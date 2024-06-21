@@ -20,6 +20,9 @@ jobs:
           go-version: stable
           cache: true
 
+      - name: Run tests
+        run: go test -v ./...
+
       - name: Release with goreleaser
         uses: goreleaser/goreleaser-action@v6
         with:
