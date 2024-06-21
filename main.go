@@ -51,7 +51,7 @@ func main() {
 			if before != "" {
 				t, err := time.Parse(time.RFC3339, before)
 				if err != nil {
-					slog.Error("Invalid date format as RFC3339", "value", before, "error", err)
+					slog.Error("Invalid date format as RFC3339 (e.g. 2024-06-21T19:54:00+09:00)", "value", before, "error", err)
 					os.Exit(1)
 				}
 				setting.ModifiedBefore = &t
@@ -80,7 +80,7 @@ func main() {
 	rootCmd.Flags().StringVarP(&setting.Prefix, "prefix", "p", "", "Key prefix to filter objects")
 	rootCmd.Flags().StringVarP(&setting.StartAfter, "start-after", "a", "", "Start after this key to filter objects")
 	rootCmd.Flags().StringVarP(&before, "modified-before", "b", "", "Modified before this date to filter objects")
-	rootCmd.Flags().StringSliceVarP(&setting.LowerExtensions, "ext", "x", nil, "Lowercase extensions to filter objects (e.g. '.jpg', '.png')")
+	rootCmd.Flags().StringSliceVarP(&setting.LowerExtensions, "ext", "x", nil, "Lowercased extensions to filter objects (e.g. '.jpg', '.png')")
 	rootCmd.Flags().BoolVarP(&setting.DryRun, "dry-run", "d", false, "Dry run mode (no lambda invocation)")
 
 	_ = rootCmd.Execute()
