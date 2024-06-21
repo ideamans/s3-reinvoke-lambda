@@ -23,7 +23,7 @@ Lambda関数を設定した後のオブジェクトについては、イベン�
 
 ## 使い方
 
-Linuxでの利用を例に解説します。
+Linuxを例に解説します。ご利用のプラットフォームに合わせて読み替えてください。
 
 ### AWSの設定
 
@@ -37,17 +37,20 @@ aws configure
 
 ### s3-reinvoke-lambdaコマンドのインストール
 
-プログラムをダウンロードし、実行可能な状態にしてください。
+次のリリースページから最新のプログラムをダウンロードし、実行可能な状態にしてください。
+
+- リリースページ <https://github.com/ideamans/s3-reinvoke-lambda/releases>
 
 ```bash
-wget -o s3-reinvoke-lambda [ダウンロードURL]
+wget [ダウンロードURL]
+# 例 wget https://github.com/ideamans/s3-reinvoke-lambda/releases/download/v1.0.0/s3-reinvoke-lambda_Linux_x86_64.tar.gz
+tar s3-reinvoke-lambda_Linux_x86_64.tar.gz
 sudo mv s3-reinvoke-lambda /usr/local/bin
-sudo chmod +x /usr/local/bin/s3-reinvoke-lambda
 ```
 
 ### s3-reinvoke-lambdaコマンドの実行
 
-対象のバケットを`the-bucket`、Lambda関数名を`the-function`とします。
+ここでは対象のバケットを`the-bucket`、Lambda関数名を`the-function`とします。
 
 次のコマンドを実行すると、`the-bucket`に対する全オブジェクトについて、オブジェクト作成イベントをパラメータとして`the-function`を起動します。
 

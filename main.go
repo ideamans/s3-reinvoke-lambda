@@ -22,7 +22,7 @@ func main() {
 	setting := Setting{}
 
 	rootCmd := &cobra.Command{
-		Use:   "s3-reinvoke-lambda [bucket] [lambda-arn]",
+		Use:   "s3-reinvoke-lambda [bucket-name] [lambda-function-name]",
 		Short: "S3 Objects Lambda Reinvoking Tool",
 		Long:  "A tool to re-invoke a lambda function for all objects in an S3 bucket",
 		Args:  cobra.ExactArgs(2),
@@ -79,8 +79,8 @@ func main() {
 	rootCmd.Flags().IntVarP(&setting.Parallelism, "parallel", "P", 100, "Number of parallel invocations")
 	rootCmd.Flags().StringVarP(&setting.Prefix, "prefix", "p", "", "Key prefix to filter objects")
 	rootCmd.Flags().StringVarP(&setting.StartAfter, "start-after", "a", "", "Start after this key to filter objects")
-	rootCmd.Flags().StringVarP(&before, "modified-before", "b", "", "Modified before this date to filter objects")
-	rootCmd.Flags().StringSliceVarP(&setting.LowerExtensions, "ext", "x", nil, "Lowercased extensions to filter objects (e.g. '.jpg', '.png')")
+	rootCmd.Flags().StringVarP(&before, "modified-before", "b", "", "Modified before this date (RFC3339 format) to filter objects")
+	rootCmd.Flags().StringSliceVarP(&setting.LowerExtensions, "ext", "x", nil, "Lowercased extensions to filter objects (e.g. '.jpg,.png')")
 	rootCmd.Flags().BoolVarP(&setting.DryRun, "dry-run", "d", false, "Dry run mode (no lambda invocation)")
 
 	_ = rootCmd.Execute()
